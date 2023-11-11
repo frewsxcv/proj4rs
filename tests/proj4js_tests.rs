@@ -57,6 +57,23 @@ fn test_transform_null_datum() {
 }
 
 #[test]
+fn test_wgs84_epsg3857() {
+    let wgs84 = concat!(
+        "+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 ",
+        "+datum=WGS84 +units=degrees",
+    );
+    let epsg3857 = concat!(
+        "+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 ",
+        "+units=m +nadgrids=@null +wktext +no_defs +type=crs",
+    );
+
+    let from = proj::Proj::from_user_string(wgs84).unwrap();
+    let to = proj::Proj::from_user_string(epsg3857).unwrap();
+
+    proj4rs::adaptors::transform_xy(&from, &to, -2., 2.).unwrap();
+}
+
+#[test]
 fn test_longlat_alias() {
     let wgs84 = concat!(
         "+title=WGS 84 (long/lat) +proj=longlat +ellps=WGS84 ",

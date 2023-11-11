@@ -1,6 +1,8 @@
 //!
 //! Display infos about NAD grid
 //!
+fn main() {}
+/*
 use proj4rs::errors::{Error, Result};
 use proj4rs::nadgrids::{files::read_from_file, Catalog};
 use std::env;
@@ -25,3 +27,4 @@ fn main() -> Result<()> {
         None => Err(Error::NadGridNotAvailable),
     }
 }
+*/
